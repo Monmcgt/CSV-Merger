@@ -1,5 +1,6 @@
 package me.monmcgt.code.csvmerger
 
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -47,7 +48,9 @@ object Main {
 
         println("Please enter path to output file")
         val out = readLine()!!
-        Files.write(Paths.get(out), string.toByteArray())
+        val outFile = File(out)
+        outFile.parentFile.mkdirs()
+        Files.write(outFile.toPath(), string.toByteArray())
     }
 
     fun readCsv(path: String, delimiter: String = ","): List<List<String>> {
