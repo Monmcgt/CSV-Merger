@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
         args[0]
     } else {
         println("Enter path to directory containing CSV files")
-        readLine()!!
+        readln()
     }
     val lines = if (args.size <= 1) {
         readCsv(path)
@@ -22,12 +22,12 @@ fun main(args: Array<String>) {
     println("Please enter format string using the following indexes:")
     println("Example: Hello, {0}! Your age is {1}")
     println(head.withIndex().joinToString("\n") { "${it.index}: ${it.value}" })
-    val format = readLine()!!
+    val format = readln()
 
     println("Please select rows to merge:")
     println(body.withIndex().joinToString("\n") { "${it.index}: ${it.value}" })
     // delimiter is either a space or a comma
-    val rows = readLine()!!.split(Regex("[ ,]")).map { it.toInt() }
+    val rows = readln().split(Regex("[ ,]")).map { it.toInt() }
 
     val regex = Regex("[{]\\d+[}]")
     val list = mutableListOf<String>()
@@ -45,9 +45,9 @@ fun main(args: Array<String>) {
     val string = list.joinToString("\n")
 
     println("Please enter path to output file")
-    val out = readLine()!!
+    val out = readln()
     val outFile = File(out)
-    outFile.parentFile.mkdirs()
+    outFile.parentFile?.mkdirs()
     Files.write(outFile.toPath(), string.toByteArray())
 }
 
